@@ -567,6 +567,7 @@ GameObject:
   - component: {fileID: 338717951}
   - component: {fileID: 338717950}
   - component: {fileID: 338717949}
+  - component: {fileID: 338717952}
   m_Layer: 5
   m_Name: CellsSpace
   m_TagString: Untagged
@@ -669,6 +670,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338717947}
   m_CullTransparentMesh: 0
+--- !u!114 &338717952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338717947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b80062d4297bd4ea91de123349deb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 6780826049590339563, guid: 46e50491ab7c1d342a55f4faa20f1c0a, type: 3}
+  _emptyCells:
+  - {fileID: 928737993}
+  - {fileID: 988534174}
+  - {fileID: 1927827929}
+  - {fileID: 2093173678}
+  - {fileID: 1364061368}
+  - {fileID: 1302980166}
+  - {fileID: 1392566217}
+  - {fileID: 1200723664}
+  - {fileID: 1432144198}
+  - {fileID: 479353281}
+  - {fileID: 986831935}
+  - {fileID: 2075818667}
+  - {fileID: 315448937}
+  - {fileID: 1364325378}
+  - {fileID: 203354696}
+  - {fileID: 150088371}
+  _timeDelay: 2
 --- !u!1 &479353280
 GameObject:
   m_ObjectHideFlags: 0
