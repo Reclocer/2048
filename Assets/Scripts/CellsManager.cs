@@ -9,7 +9,8 @@ namespace G2048
     {
         [SerializeField] private GameObject _item;
         [SerializeField] private List<Transform> _emptyCells;
-        private int _halfEmptyCells;
+        private int _halfEmptyCellsI;
+        private bool _halfEmptyCellsB = false;
         [SerializeField] private float _timeDelay = 10;
         private int _maxValueInItems = 1;
 
@@ -21,7 +22,7 @@ namespace G2048
 
         private void Initialization()
         {
-            _halfEmptyCells = _emptyCells.Count / 2;
+            _halfEmptyCellsI = _emptyCells.Count / 2;
         }
 
         #region GetSet   
@@ -67,7 +68,7 @@ namespace G2048
 
         private void CreateItem()
         {            
-            if (_emptyCells.Count > _halfEmptyCells)
+            if (_emptyCells.Count > _halfEmptyCellsI && _halfEmptyCellsB == false)
             {
                 InstantiateNewItem();
             }
@@ -76,7 +77,8 @@ namespace G2048
             {                
                 int randomValue = Random.Range(1, _maxValueInItems);
                 Item item = InstantiateNewItem();
-                item.SetIntItemValue(randomValue);                
+                item.SetIntItemValue(randomValue);
+                _halfEmptyCellsB = true;
             }
         }
 

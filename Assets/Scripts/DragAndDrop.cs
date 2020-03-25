@@ -52,7 +52,9 @@ namespace G2048
         {
             Transform pointEnterTransform = eventData.pointerEnter.transform;
 
-            if (pointEnterTransform.tag == "Cell" || pointEnterTransform.tag == "Item")
+            if (pointEnterTransform.tag == "Cell" || 
+                pointEnterTransform.tag == "Item" ||
+                pointEnterTransform.tag == "Trash")
             {
                 // if cell empty
                 if (pointEnterTransform.childCount == 0)
@@ -72,6 +74,10 @@ namespace G2048
                     _cellsManager.AddEmptyCell(_lastParent);
 
                     Destroy(pointEnterTransform.gameObject);
+                }
+                else if (pointEnterTransform.tag == "Trash")
+                {
+                    Destroy(gameObject);
                 }
                 else
                 {
