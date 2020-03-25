@@ -8,6 +8,7 @@ namespace G2048
     public class Item : MonoBehaviour
     {
         private CellsManager _cellsManager;
+        private ScoreManager _scoreManager;
     
         [SerializeField] private Text _amountTextComponent;
         private int _itemValue = 1;
@@ -16,6 +17,7 @@ namespace G2048
         private void Start()
         {
             _cellsManager = GameObject.FindGameObjectWithTag("CellsSpace").GetComponent<CellsManager>();
+            _scoreManager = GameObject.FindGameObjectWithTag("Score")     .GetComponent<ScoreManager>();
         }
 
         /// <summary>
@@ -35,7 +37,9 @@ namespace G2048
         {
             _itemValue++;
             _amountTextComponent.text = _itemValue.ToString();
+
             _cellsManager.SetMaxValue(_itemValue);
+            _scoreManager.IncrementScore(_itemValue);
         }
     }
 }
