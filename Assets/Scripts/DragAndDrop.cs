@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace G2048
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private Item _item;
