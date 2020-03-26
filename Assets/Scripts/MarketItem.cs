@@ -13,7 +13,10 @@ namespace G2048
 
         [SerializeField] private Text _priceValueT;
         private int _priceValueI;
-        public int PriceValueI => _priceValueI;        
+        public int PriceValueI => _priceValueI;
+
+        private int _amountOfPurchases = 0;
+        private ScoreManager _scoreManager;
 
         public MarketItem()
         {
@@ -28,8 +31,18 @@ namespace G2048
 
             _priceValueI = priceValue;
             _priceValueT.text = priceValue.ToString();
-        } 
-        
+        }
+
+        private void Start()
+        {
+            Initialization();
+        }
+
+        private void Initialization()
+        {
+            _scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+        }
+
         /// <summary>
         /// Set item number
         /// </summary>
@@ -48,6 +61,18 @@ namespace G2048
         {
             _priceValueI = priceValue*100;
             _priceValueT.text = _priceValueI.ToString();
+        }
+
+        /// <summary>
+        /// Increnment price value
+        /// </summary>
+        public void IncrementPrice()
+        {
+            _scoreManager.DecrementScore(_priceValueI);
+
+            _amountOfPurchases++;
+            _priceValueI += _itemNumberI * 100 * _amountOfPurchases;            
+            _priceValueT.text = _priceValueI.ToString();           
         }
     }
 }
