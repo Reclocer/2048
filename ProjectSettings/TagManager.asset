@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Cell
   - Trash
+  - Score
   layers:
   - Default
   - TransparentFX

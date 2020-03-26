@@ -7,7 +7,7 @@ namespace G2048
 {
     public class CellsManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _item;
+        [SerializeField] private GameObject _itemPrefab;
         [SerializeField] private List<Transform> _emptyCells;
         private int _halfEmptyCellsI;
         private bool _halfEmptyCellsB = false;
@@ -86,7 +86,7 @@ namespace G2048
         {
             Transform randomParentTransform = _emptyCells[Random.Range(0, _emptyCells.Count)];
             _emptyCells.Remove(randomParentTransform);
-            Item item = Instantiate(_item, randomParentTransform.position, Quaternion.identity, randomParentTransform).GetComponent<Item>();
+            Item item = Instantiate(_itemPrefab, randomParentTransform.position, Quaternion.identity, randomParentTransform).GetComponent<Item>();
             return item;
         }
     }
