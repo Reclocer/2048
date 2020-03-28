@@ -9,6 +9,7 @@ namespace G2048
     {
         [SerializeField] private GameObject _itemPrefab;
         [SerializeField] private float _timeDelay = 10;
+        private float _time = 0; 
         private int _maxValueInItems = 1;
         private Queue<int> _boughtItems;
 
@@ -18,14 +19,26 @@ namespace G2048
 
         private void Start()
         {
-            Initialization();
-            InvokeRepeating("CreateItem", 1, _timeDelay);
+            Initialization();            
         }
 
         private void Initialization()
         {
             _boughtItems = new Queue<int>();
             _halfEmptyCellsI = _emptyCells.Count / 2;
+        }
+
+        private void Update()
+        {
+            if(_time >= _timeDelay)
+            {
+                CreateItem();
+                _time -= _timeDelay;
+            }
+            else
+            {
+                _time += Time.deltaTime;
+            }
         }
 
         #region GetSet   
