@@ -77,7 +77,8 @@ namespace G2048
                 }
                 else if (pointEnterTransform.tag == "Trash")
                 {
-                    Destroy(gameObject);
+                    _cellsManager.AddEmptyCell(_lastParent);
+                    Destroy(gameObject);                    
                 }
                 else
                 {

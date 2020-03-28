@@ -7,6 +7,8 @@ namespace G2048
 {
     public class MarketItem : MonoBehaviour
     {
+        public Button _buyBtn;
+
         [SerializeField] private Text _itemNumberT;
         private int _itemNumberI;
         public int ItemNumberI => _itemNumberI;
@@ -14,9 +16,10 @@ namespace G2048
         [SerializeField] private Text _priceValueT;
         private int _priceValueI;
         public int PriceValueI => _priceValueI;
-
+                
         private int _amountOfPurchases = 0;
         private ScoreManager _scoreManager;
+        private Cart _cart;        
 
         public MarketItem()
         {
@@ -35,12 +38,14 @@ namespace G2048
 
         private void Start()
         {
-            Initialization();
+            Initialization();            
         }
 
         private void Initialization()
         {
             _scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+            _cart = GameObject.FindGameObjectWithTag("Cart").GetComponent<Cart>();            
+            _buyBtn.onClick.AddListener(() => _cart.AddBoughtItem(this));                                      
         }
 
         /// <summary>
@@ -71,7 +76,7 @@ namespace G2048
             _scoreManager.DecrementScore(_priceValueI);
 
             _amountOfPurchases++;
-            _priceValueI += _itemNumberI * 100 * _amountOfPurchases;            
+            _priceValueI += _itemNumberI * 100 * ((_amountOfPurchases+1)^2);            
             _priceValueT.text = _priceValueI.ToString();           
         }
     }

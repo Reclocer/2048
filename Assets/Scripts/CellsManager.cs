@@ -8,11 +8,13 @@ namespace G2048
     public class CellsManager : MonoBehaviour
     {
         [SerializeField] private GameObject _itemPrefab;
-        [SerializeField] private List<Transform> _emptyCells;
-        private int _halfEmptyCellsI;
-        private bool _halfEmptyCellsB = false;
         [SerializeField] private float _timeDelay = 10;
         private int _maxValueInItems = 1;
+        private Queue<int> _boughtItems;
+
+        [SerializeField] private List<Transform> _emptyCells;
+        private int _halfEmptyCellsI;
+        private bool _halfEmptyCellsB = false;       
 
         private void Start()
         {
@@ -22,6 +24,7 @@ namespace G2048
 
         private void Initialization()
         {
+            _boughtItems = new Queue<int>();
             _halfEmptyCellsI = _emptyCells.Count / 2;
         }
 
@@ -64,21 +67,41 @@ namespace G2048
                 _maxValueInItems = value;
             }
         }
+
+        /// <summary>
+        /// Add bought item value in queue
+        /// </summary>
+        /// <param name="itemValue"></param>
+        public void AddBoughtItem(int itemValue)
+        {
+            _boughtItems.Enqueue(itemValue);            
+        }
         #endregion
 
         private void CreateItem()
-        {            
-            if (_emptyCells.Count > _halfEmptyCellsI && _halfEmptyCellsB == false)
+        {
+            if (_emptyCells.Count > 0)
             {
-                InstantiateNewItem();
-            }
-            // else if the list cells is half full
-            else if (_emptyCells.Count > 0)
-            {                
-                int randomValue = Random.Range(1, _maxValueInItems);
-                Item item = InstantiateNewItem();
-                item.SetIntItemValue(randomValue);
-                _halfEmptyCellsB = true;
+                //if there is a bought item
+                if (_boughtItems.Count > 0)
+                {
+                    Item item = InstantiateNewItem();
+                    int itemValue = _boughtItems.Peek();
+                    _boughtItems.Dequeue();
+                    item.SetIntItemValue(itemValue);
+                }
+                else if (_emptyCells.Count > _halfEmptyCellsI && _halfEmptyCellsB == false)
+                {
+                    InstantiateNewItem();
+                }
+                // else if the list cells is half full
+                else
+                {
+                    Item item = InstantiateNewItem();
+                    int randomValue = Random.Range(1, _maxValueInItems);
+                    item.SetIntItemValue(randomValue);
+                    _halfEmptyCellsB = true;
+                }
             }
         }
 

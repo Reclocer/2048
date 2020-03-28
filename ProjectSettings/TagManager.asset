@@ -9,6 +9,7 @@ TagManager:
   - Cell
   - Trash
   - Score
+  - Cart
   layers:
   - Default
   - TransparentFX
