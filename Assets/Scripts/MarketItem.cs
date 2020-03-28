@@ -19,7 +19,8 @@ namespace G2048
                 
         private int _amountOfPurchases = 0;
         private ScoreManager _scoreManager;
-        private Cart _cart;        
+        private Cart _cart;
+        private Content _content;
 
         public MarketItem()
         {
@@ -44,8 +45,11 @@ namespace G2048
         private void Initialization()
         {
             _scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
-            _cart = GameObject.FindGameObjectWithTag("Cart").GetComponent<Cart>();            
-            _buyBtn.onClick.AddListener(() => _cart.AddBoughtItem(this));                                      
+            _cart = GameObject.FindGameObjectWithTag("Cart").GetComponent<Cart>();
+            _content = GameObject.FindGameObjectWithTag("Content").GetComponent<Content>();
+
+            _buyBtn.onClick.AddListener(() => _cart.AddBoughtItem(this));
+            _buyBtn.onClick.AddListener(() => _content.CheckPrices());
         }
 
         /// <summary>

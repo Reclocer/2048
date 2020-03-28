@@ -10,6 +10,7 @@ TagManager:
   - Trash
   - Score
   - Cart
+  - Content
   layers:
   - Default
   - TransparentFX
