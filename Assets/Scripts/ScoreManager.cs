@@ -10,7 +10,7 @@ namespace G2048
         [SerializeField] private Text _scoreValueT;
         [SerializeField] private int _coefficient = 25;
 
-        private int _scoreValueI = 0;
+        [SerializeField] private int _scoreValueI = 0;
         public int Score => _scoreValueI; 
 
         protected override void Awake()
