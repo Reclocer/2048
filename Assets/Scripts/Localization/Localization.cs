@@ -12,78 +12,61 @@ public class Localization : MonoBehaviour
     public  string  Language => _language;
 
     private List<string> _names = new List<string>();
-    private GameObject[] _words;
-    public event Action<string> OnChangeLanguage = (language) => { };
+    private GameObject[] _words;    
 
     private void Start()
     {
         LoadLanguage();        
     }
 
+    /// <summary>
+    /// Change language
+    /// </summary>
     public void ClickLanguageChangeBtn()
     {
-//#if UNITY_EDITOR && !UNITY_ANDROID
-//        if (_language == "En")
-//        {
-//            _language = "Ru";
-//            PlayerPrefs.SetString("Language", _language);
-//            PlayerPrefs.Save();
-
-//            LoadLanguage();            
-//            SceneManager.LoadScene(0);
-//        }
-//        else
-//        {
-//            _language = "En";
-//            PlayerPrefs.SetString("Language", _language);
-//            PlayerPrefs.Save();
-
-//            LoadLanguage();
-//            SceneManager.LoadScene(0);
-//        }  
-//#endif
-
-//#if UNITY_EDITOR && UNITY_ANDROID
         if (_language == "En")
         {
             _language = "Ru";
-            GetComponentInChildren<Text>().text = _language;            
+            PlayerPrefs.SetString("Language", _language);
+            PlayerPrefs.Save();
+
+            LoadLanguage();            
+            SceneManager.LoadScene(0);
         }
         else
         {
             _language = "En";
-            GetComponentInChildren<Text>().text = _language;            
-        }
+            PlayerPrefs.SetString("Language", _language);
+            PlayerPrefs.Save();
 
-        OnChangeLanguage(_language);
-//#endif
+            LoadLanguage();
+            SceneManager.LoadScene(0);
+        } 
     }
 
     private void LoadLanguage()
     {
-//#if UNITY_EDITOR && !UNITY_ANDROID
-//        if (PlayerPrefs.HasKey("Language"))
-//        {
-//            _words = GameObject.FindGameObjectsWithTag("Localizable");
-//            string language = PlayerPrefs.GetString("Language");
-//            XmlDocument xmlDocument = new XmlDocument();
-//            xmlDocument.Load($"Assets/Resources/Localization/{language}.xml");
-//            XmlNodeList list = xmlDocument.GetElementsByTagName("word");
-//            int lenght = _words.Length;
+        if (PlayerPrefs.HasKey("Language"))
+        {
+            _words = GameObject.FindGameObjectsWithTag("Localizable");
+            string language = PlayerPrefs.GetString("Language");
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.Load($"Assets/Resources/Localization/{language}.xml");
+            XmlNodeList list = xmlDocument.GetElementsByTagName("word");
+            int lenght = _words.Length;
 
-//            foreach (XmlNode tag in list)
-//            {
-//                _names.Add(tag.InnerText);
-//            }
+            foreach (XmlNode tag in list)
+            {
+                _names.Add(tag.InnerText);
+            }
 
-//            for (int i = 0; i < lenght; i++)
-//            {
-//                _words[i].GetComponent<Text>().text = _names[i];
-//            }
+            for (int i = 0; i < lenght; i++)
+            {
+                _words[i].GetComponent<Text>().text = _names[i];
+            }
             
-//            _language = language;
-//            GetComponentInChildren<Text>().text = language;
-//        }
-//#endif
+            _language = language;
+            GetComponentInChildren<Text>().text = language;
+        }
     }
 }
