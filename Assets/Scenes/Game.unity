@@ -788,7 +788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemPrefab: {fileID: 6780826049590339563, guid: 46e50491ab7c1d342a55f4faa20f1c0a,
     type: 3}
-  _timeDelay: 3
+  _timeDelay: 2
   _emptyCells:
   - {fileID: 928737993}
   - {fileID: 988534174}

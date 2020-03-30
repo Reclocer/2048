@@ -12,6 +12,7 @@ TagManager:
   - Cart
   - Content
   - Localizable
+  - Localization
   layers:
   - Default
   - TransparentFX

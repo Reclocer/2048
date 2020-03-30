@@ -43,7 +43,7 @@ public class Localization : MonoBehaviour
 //        }  
 //#endif
 
-#if UNITY_EDITOR && UNITY_ANDROID
+//#if UNITY_EDITOR && UNITY_ANDROID
         if (_language == "En")
         {
             _language = "Ru";
@@ -56,7 +56,7 @@ public class Localization : MonoBehaviour
         }
 
         OnChangeLanguage(_language);
-#endif
+//#endif
     }
 
     private void LoadLanguage()
