@@ -35,10 +35,8 @@ namespace G2048
                 CreateItem();
                 _time -= _timeDelay;
             }
-            else
-            {
-                _time += Time.deltaTime;
-            }
+
+            _time += Time.deltaTime;            
         }
 
         #region GetSet   

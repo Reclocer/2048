@@ -20,6 +20,9 @@ namespace G2048
             _boughtItems.Enqueue(marketItem);
         }
 
+        /// <summary>
+        /// Upload cart queue and set CellsManager queue 
+        /// </summary>
         public void UploadCart()
         {            
             for(int i = 0; i <= _boughtItems.Count+1; i++)
